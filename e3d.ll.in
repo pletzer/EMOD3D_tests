@@ -1,0 +1,27 @@
+# Example MPI LoadLeveler Job file
+# @ shell = /bin/bash
+#
+# @ job_name = @RUN_NAME@
+#
+# @ job_type = parallel
+#
+# @ wall_clock_limit     = 2:00:00
+#
+# @ network.MPI = sn_all,not_shared,US
+#
+# @ account_no = nesi00213
+#
+# @ output               = $(job_name).$(schedd_host).$(jobid).o
+# @ error                = $(job_name).$(schedd_host).$(jobid).e
+# @ notification         = never
+# @ class                = General
+# @ node = @NUM_NODES@
+# @ tasks_per_node = @TASKS_PER_NODE@
+# @ task_affinity = core(1)
+#
+# @ queue
+
+cd @RUN_DIR@
+cp @CMAKE_SOURCE_DIR@/e3d.par .
+time poe @EMOD3D_EXECUTABLE@ -args "par=e3d.par"
+
