@@ -1,0 +1,12 @@
+    1. Create a GIT repository for code and test inputs and implement 
+       a structured environment for effective collaboration
+
+    2. Build Emod3d code on Fitzroy and verify - rerun small/large 
+       input data and compare timings and output with BG/P
+
+    3. Profile the code to identify performance bottlenecks 
+    
+    4. Meet the performance target (3~4 times of BG/P speed for 
+       the same number of cores used) 
+
+    8. Train PI and the team to run the simulation on Fitzroy
