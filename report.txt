@@ -52,12 +52,12 @@ options:
 
 Small problem: 32 procs, 58mins on BG/P. Fitzroy results:
 
-Optimization 		Reproducible?   time[mins]
+Optimization 			times		md5sum(seis-00001)
 
-default				N/A        		
-Power6
-OptimizedPower6
-AggressivePower6	
+default				7m26.099s      d587ee4811b1092a19679bb56b3d13bd		
+Power6				7m33.473s	d587ee4811b1092a19679bb56b3d13bd
+OptimizedPower6			7m4.622s	663339a0fc885906d2e018ffa0961401
+AggressivePower6		6m56.199s	663339a0fc885906d2e018ffa0961401
 
 3. Profile the code to identify performance bottlenecks 
     
