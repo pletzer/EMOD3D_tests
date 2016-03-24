@@ -1,0 +1,67 @@
+1. Create a GIT repository for code and test inputs and implement 
+       a structured environment for effective collaboration
+       ====================================================
+
+Canterbury U gave github access of the code to Alex Pletzer. A 
+CMake build system was added to the source code to enable rapid
+experimentation of compiler switches. 
+
+The CMake build system requires running
+
+$ module load cmake
+$ cmake [options] <src_dir> 
+$ make
+
+in the source or in some other directory. Hence, multiple versions of 
+the same code can easily be built. 
+
+The following configuration options can be used to select the compiler
+options:
+
+(a) cmake <src_dir>: default "Release" build
+
+-- C compiler: mpcc
+-- C compiler flags:  -qthreaded -qalias=noansi -qhalt=e -q64 -qkeyword=inline -O2 -qmaxmem=-1
+-- Fortran compiler: mpxlf
+-- Fortran compiler flags:  -qthreaded -qhalt=e -q64 -O2 -qmaxmem=-1
+
+
+(b) cmake -D CMAKE_BUILD_TYPE=Power6 <src_dir>: targeting power6 
+                                                architecture
+
+-- C compiler flags:  -qthreaded -qalias=noansi -qhalt=e -q64 -qkeyword=inline -O2 -qmaxmem=-1 -qtune=pwr6 -qarch=pwr6
+-- Fortran compiler flags:  -qthreaded -qhalt=e -q64 -O2 -qmaxmem=-1 -qtune=pwr6 -qarch=pwr6
+
+
+(c) cmake -D CMAKE_BUILD_TYPE=OptimizedPower6 <src_dir>: more agressive
+                                                         optimization for
+                                                         power6
+-- C compiler flags:  -qthreaded -qalias=noansi -qhalt=e -q64 -qkeyword=inline -O3 -qstrict -qmaxmem=-1 -qtune=pwr6 -qarch=pwr6
+-- Fortran compiler flags:  -qthreaded -qhalt=e -q64 -O3 -qstrict -qmaxmem=-1 -qtune=pwr6 -qarch=pwr6
+
+(d) cmake -D CMAKE_BUILD_TYPE=AggressivePower6 <src_dir>: even more aggressive 
+                                                          optimization for power6
+-- C compiler flags:  -qthreaded -qalias=noansi -qhalt=e -q64 -qkeyword=inline -O3 -qstrict -qmaxmem=-1 -qtune=pwr6 -qarch=pwr6 -qcache=auto -qhot -qsim
+-- Fortran compiler flags:  -qthreaded -qhalt=e -q64 -O3 -qstrict -qmaxmem=-1 -qtune=pwr6 -qarch=pwr6 -qcache=auto -qhot -qsimd -qipa
+
+
+
+2. Build Emod3d code on Fitzroy and verify - rerun small/large 
+       input data and compare timings and output with BG/P
+       ===================================================
+
+Small problem: 32 procs, 58mins on BG/P. Fitzroy results:
+
+Optimization 		Reproducible?   time[mins]
+
+default				N/A        		
+Power6
+OptimizedPower6
+AggressivePower6	
+
+3. Profile the code to identify performance bottlenecks 
+    
+4. Meet the performance target (3~4 times of BG/P speed for 
+       the same number of cores used) 
+
+8. Train PI and the team to run the simulation on Fitzroy
