@@ -40,7 +40,7 @@ options:
 -- Fortran compiler flags:  -qthreaded -qhalt=e -q64 -O3 -qstrict -qmaxmem=-1 -qtune=pwr6 -qarch=pwr6
 
 (d) cmake -D CMAKE_BUILD_TYPE=AggressivePower6 <src_dir>: even more aggressive 
-                                                          optimization for power6
+           /Users/pletzer                                               optimization for power6
 -- C compiler flags:  -qthreaded -qalias=noansi -qhalt=e -q64 -qkeyword=inline -O3 -qstrict -qmaxmem=-1 -qtune=pwr6 -qarch=pwr6 -qcache=auto -qhot -qsim
 -- Fortran compiler flags:  -qthreaded -qhalt=e -q64 -O3 -qstrict -qmaxmem=-1 -qtune=pwr6 -qarch=pwr6 -qcache=auto -qhot -qsimd -qipa
 
@@ -52,12 +52,12 @@ options:
 
 Small problem: 32 procs, 58mins on BG/P. Fitzroy results:
 
-Optimization 			times		md5sum(seis-00001)
+Optimization 				times		md5sum(seis-00001)
 
-default				7m26.099s      d587ee4811b1092a19679bb56b3d13bd		
-Power6				7m33.473s	d587ee4811b1092a19679bb56b3d13bd
-OptimizedPower6			7m4.622s	663339a0fc885906d2e018ffa0961401
-AggressivePower6		6m56.199s	663339a0fc885906d2e018ffa0961401
+(a) default				7m26.099s      d587ee4811b1092a19679bb56b3d13bd		
+(b) Power6				7m33.473s	d587ee4811b1092a19679bb56b3d13bd
+(c) OptimizedPower6			7m4.622s	663339a0fc885906d2e018ffa0961401
+(d) AggressivePower6			6m56.199s	663339a0fc885906d2e018ffa0961401
 
 3. Profile the code to identify performance bottlenecks 
     
