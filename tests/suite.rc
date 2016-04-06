@@ -1,0 +1,55 @@
+#
+# This suite runs tests for EMOD3D
+#
+
+#
+# Define suite title
+#
+title = "Test suite for EMOD3D"
+
+#
+# Define task dependencies, that is, what should be run
+# in which order. Tasks appear with their task name.
+# Each task must be defined under the same name in the
+# runtime section.
+#
+[scheduling]
+  [[dependencies]]
+    graph = "run_test => run_test_on_fitzroy"
+
+#
+# Define tasks - tell Cylc what to do when it runs a task.
+#
+[runtime]
+
+  [[FITZROY]]
+    [[[remote]]]
+      host = fitzroy
+
+  [[FITZROY_LL]]
+    inherit = FITZROY
+    [[[job submission]]]
+      method = loadleveler
+    [[[directives]]]
+      account_no = hpcf
+      class = General
+      job_type = parallel
+      job_name = fdrun-mpi
+      wall_clock_limit = 24:00:00
+      node = 1
+      tasks_per_node = 1
+      network.MPI = sn_all,not_shared,US
+      shell = /bin/bash
+      node_usage = shared
+
+  [[FITZROY_AT]]
+    inherit = FITZROY
+    [[[job submission]]]
+      method = at
+
+  [[run_test]]
+    script = "echo Hi; sleep 60"
+
+  [[run_test_on_fitzroy]]
+    inherit = FITZROY_LL
+    script = "echo Fitzroy; sleep 10"

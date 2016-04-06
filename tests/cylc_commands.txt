@@ -1,0 +1,8 @@
+cylc register emod3d_test .
+cylc run emod3d_test
+cylc scan
+ls /home/pletzera/cylc-run/emod3d_test
+cylc log emod3d_test run_test.1
+cylc log -o emod3d_test run_test.1
+cylc log -e emod3d_test run_test.1
+gcylc emod3d_test &
