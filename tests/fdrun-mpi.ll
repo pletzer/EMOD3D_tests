@@ -7,8 +7,8 @@
 #
 # @ wall_clock_limit     = 24:00:00
 #
-# @ group = NZ_merit
-# @ account_no = nesi00213
+## @ group = NZ_merit
+# @ account_no = hpcf
 #
 # @ output               = $(job_name).o
 # @ error                = $(job_name).e
@@ -21,5 +21,5 @@
 # @ queue
 
 home=/gpfs_external/filesets/nesi/home/pletzera
-poe $home/EMOD3D/buildAggressivePower6/Mpi/Emod3d/V3.0.4/edmod3d-mpi -args "par=e3d.par"
+time poe $home/EMOD3D/buildAggressivePower6/Mpi/Emod3d/V3.0.4/edmod3d-mpi -args "par=e3d.par"
 
